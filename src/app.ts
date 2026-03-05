@@ -1,3 +1,4 @@
+// Entry
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -8,15 +9,21 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import authRoutes from './auth';
 import workoutRoutes from './workouts';
 
+
+// load env variables
 dotenv.config();
 
 const app = express();
+// frontend requests
 app.use(cors());
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/workouts', workoutRoutes);
 
+
+// swagger config
 const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
@@ -41,6 +48,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+
+// mongo connect
 mongoose.connect(process.env.MONGO_URI as string)
     .then(() => {
         console.log('Connected to MongoDB');
