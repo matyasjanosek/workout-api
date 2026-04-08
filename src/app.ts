@@ -8,6 +8,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 
 import authRoutes from './auth';
 import workoutRoutes from './workouts';
+import exerciseRoutes from './exercises';
 
 
 // load env variables
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/workouts', workoutRoutes);
+app.use('/api/exercises', exerciseRoutes);
 
 
 // swagger config
