@@ -50,6 +50,11 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+// keep render alive ping
+setInterval(() => {
+    fetch('https://workout-api-q9v4.onrender.com/api-docs')
+        .catch(() => {})
+}, 10 * 60 * 1000)
 
 // mongo connect
 mongoose.connect(process.env.MONGO_URI as string)
