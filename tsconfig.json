@@ -8,5 +8,5 @@
     "strict": false,
     "esModuleInterop": true
   },
-  "exclude": ["node_modules", "tests", "**/*.test.ts"]
+  "exclude": ["node_modules", "tests", "**/*.test.ts", "vitest.config.ts"]
 }
