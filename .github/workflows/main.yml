@@ -3,11 +3,19 @@ name: CI
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   test:
-    name: Run tests
+    name: Run tests & build
     runs-on: ubuntu-latest
+
+    env:
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      PORT: 3000
+      FRONTEND_URL: https://deluxe-taiyaki-6e4f15.netlify.app
 
     steps:
       - uses: actions/checkout@v4
@@ -22,3 +30,6 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Build
+        run: npm run build
