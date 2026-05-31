@@ -10,6 +10,7 @@ jobs:
   test:
     name: Run tests & build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     env:
       MONGO_URI: ${{ secrets.MONGO_URI }}
